@@ -4,6 +4,7 @@ import "./App.css";
 import BoardList from "./components/BoardList";
 import NewBoardForm from "./components/NewBoardForm";
 import CardList from "./components/CardList";
+import NewCardForm from "./components/NewCardForm";
 
 const appURL = "https://bored-inspo-backend.herokuapp.com/";
 
@@ -79,11 +80,17 @@ function App() {
           <h2>Create a new board:</h2>
           <NewBoardForm />
         </div>
-        {cards ? (
-          <div>
-            <h2>Cards for {selectedBoard.title}</h2>
-            <CardList cards={cards} />
-          </div>
+        {cards.length > 0 ? (
+          <>
+            <div>
+              <h2>Cards for {selectedBoard.title}</h2>
+              <CardList cards={cards} />
+            </div>
+            <div>
+              <h2>Create a new card:</h2>
+              <NewCardForm />
+            </div>
+          </>
         ) : (
           ""
         )}

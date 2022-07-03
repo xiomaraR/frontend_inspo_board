@@ -5,7 +5,13 @@ const CardList = ({ cards }) => {
   return (
     <div>
       {cards.map((card) => {
-        return <Card message={card.message} likesCount={card.likes_count} />;
+        return (
+          <Card
+            key={card.card_id}
+            message={card.message}
+            likesCount={card.likes_count}
+          />
+        );
       })}
     </div>
   );
