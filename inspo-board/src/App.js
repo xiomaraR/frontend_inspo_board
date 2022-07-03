@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import BoardList from "./components/BoardList";
 import NewBoardForm from "./components/NewBoardForm";
+import CardList from "./components/CardList";
 
 const appURL = "https://bored-inspo-backend.herokuapp.com/";
 
@@ -26,6 +27,7 @@ const getBoards = () => {
 function App() {
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState("");
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     refreshBoards();
@@ -41,15 +43,23 @@ function App() {
       });
   };
 
-  const selectBoard = (title, owner) => {
+  const selectBoard = (boardId, title, owner) => {
     const board = { title: title, owner: owner };
-
     setSelectedBoard(board);
+
+    axios
+      .get(`${appURL}/boards/${boardId}/cards`)
+      .then((response) => {
+        setCards(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <header>
         <h1>Inspo Board</h1>
       </header>
       <main>
@@ -69,6 +79,14 @@ function App() {
           <h2>Create a new board:</h2>
           <NewBoardForm />
         </div>
+        {cards ? (
+          <div>
+            <h2>Cards for {selectedBoard.title}</h2>
+            <CardList cards={cards} />
+          </div>
+        ) : (
+          ""
+        )}
       </main>
     </div>
   );

@@ -7,6 +7,7 @@ const BoardList = ({ boards, onSelectBoard }) => {
       {boards.map((board) => {
         return (
           <Board
+            boardId={board.boardId}
             title={board.title}
             owner={board.owner}
             onSelectBoard={onSelectBoard}
