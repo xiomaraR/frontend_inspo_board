@@ -1,8 +1,12 @@
 import React from "react";
 
-const Board = ({ title, owner }) => {
+const Board = ({ title, owner, onSelectBoard }) => {
+  const onItemClick = () => {
+    onSelectBoard(title, owner);
+  };
+
   return (
-    <li>
+    <li onClick={onItemClick}>
       {title} - {owner}
     </li>
   );

@@ -25,6 +25,7 @@ const getBoards = () => {
 
 function App() {
   const [boards, setBoards] = useState([]);
+  const [selectedBoard, setSelectedBoard] = useState("");
 
   useEffect(() => {
     refreshBoards();
@@ -40,6 +41,12 @@ function App() {
       });
   };
 
+  const selectBoard = (title, owner) => {
+    const board = { title: title, owner: owner };
+
+    setSelectedBoard(board);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -47,9 +54,19 @@ function App() {
       </header>
       <main>
         <div>
-          <BoardList boards={boards} />
+          <h2>Board List</h2>
+          <BoardList boards={boards} onSelectBoard={selectBoard} />
         </div>
         <div>
+          <h2>Selected Board:</h2>
+          <h3>
+            {selectedBoard
+              ? `${selectedBoard.title} - ${selectedBoard.owner}`
+              : "Select a board from the list!"}
+          </h3>
+        </div>
+        <div>
+          <h2>Create a new board:</h2>
           <NewBoardForm />
         </div>
       </main>
