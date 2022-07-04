@@ -8,39 +8,23 @@ import NewCardForm from "./components/NewCardForm";
 
 const appURL = "https://bored-inspo-backend.herokuapp.com/";
 
-const boardApiToJson = (board) => {
-  const { board_id: boardId, title, owner } = board;
-
-  return { boardId, title, owner };
-};
-
-const getBoards = () => {
-  return axios
-    .get(`${appURL}/boards`)
-    .then((response) => {
-      return response.data.map(boardApiToJson);
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-    });
-};
-
 function App() {
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState("");
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    refreshBoards();
+    getBoards();
   }, []);
 
-  const refreshBoards = () => {
-    return getBoards()
-      .then((newBoards) => {
-        setBoards(newBoards);
+  const getBoards = () => {
+    return axios
+      .get(`${appURL}/boards`)
+      .then((response) => {
+        setBoards(response.data);
       })
-      .catch((err) => {
-        console.log(err.message);
+      .catch((error) => {
+        console.log(error.response.data);
       });
   };
 

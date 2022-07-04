@@ -8,7 +8,7 @@ const BoardList = ({ boards, onSelectBoard }) => {
         return (
           <Board
             key={board.boardId}
-            boardId={board.boardId}
+            boardId={board.board_id}
             title={board.title}
             owner={board.owner}
             onSelectBoard={onSelectBoard}
