@@ -42,6 +42,20 @@ function App() {
       });
   };
 
+  const addBoard = (title, owner) => {
+    axios
+      .post(`${appURL}/boards`, { title, owner })
+      .then((result) => {
+        const newBoard = {
+          board_id: result.data.board.board_id,
+          title: result.data.board.title,
+          owner: result.data.board.owner,
+        };
+        setBoards([...boards, newBoard]);
+      })
+      .catch((error) => console.log(error.response.data));
+  };
+
   return (
     <div>
       <header>
@@ -62,7 +76,7 @@ function App() {
         </div>
         <div>
           <h2>Create a new board:</h2>
-          <NewBoardForm />
+          <NewBoardForm onAddBoardCallback={addBoard} />
         </div>
         {cards.length > 0 ? (
           <>

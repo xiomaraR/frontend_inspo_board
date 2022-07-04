@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const NewBoardForm = () => {
+const NewBoardForm = ({ onAddBoardCallback }) => {
   const [formFields, setFormFields] = useState({
     title: "",
     owner: "",
@@ -14,8 +14,19 @@ const NewBoardForm = () => {
     setFormFields({ ...formFields, owner: event.target.value });
   };
 
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+
+    onAddBoardCallback(formFields.title, formFields.owner);
+
+    setFormFields({
+      title: "",
+      owner: "",
+    });
+  };
+
   return (
-    <form>
+    <form onSubmit={onFormSubmit}>
       <label htmlFor="boardTitle">Title:</label>
       <input
         name="boardTitle"
