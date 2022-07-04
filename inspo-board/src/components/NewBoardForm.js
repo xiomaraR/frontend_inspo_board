@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./NewBoardForm.css";
 
 const NewBoardForm = ({ onAddBoardCallback }) => {
   const [formFields, setFormFields] = useState({
@@ -32,14 +33,16 @@ const NewBoardForm = ({ onAddBoardCallback }) => {
         name="boardTitle"
         value={formFields.title}
         onChange={onTitleChange}
+        required
       />
       <label htmlFor="boardOwner">Owner:</label>
       <input
         name="boardOwner"
         value={formFields.owner}
         onChange={onOwnerChange}
+        required
       />
-      <button type="button"></button>
+      <button type="submit">Submit</button>
     </form>
   );
 };

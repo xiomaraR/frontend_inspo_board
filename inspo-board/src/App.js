@@ -78,7 +78,7 @@ function App() {
           <h2>Create a new board:</h2>
           <NewBoardForm onAddBoardCallback={addBoard} />
         </div>
-        {cards.length > 0 ? (
+        {selectedBoard ? (
           <>
             <div>
               <h2>Cards for {selectedBoard.title}</h2>
