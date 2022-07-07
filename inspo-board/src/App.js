@@ -12,6 +12,7 @@ function App() {
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState("");
   const [cards, setCards] = useState([]);
+  const [boardFormVisibility, setBoardFormVisibility] = useState(true);
 
   useEffect(() => {
     getBoards();
@@ -113,7 +114,21 @@ function App() {
         </div>
         <div>
           <h2>Create a new board:</h2>
-          <NewBoardForm onAddBoardCallback={addBoard} />
+          {boardFormVisibility ? (
+            <NewBoardForm onAddBoardCallback={addBoard} />
+          ) : (
+            ""
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              setBoardFormVisibility(!boardFormVisibility);
+            }}
+          >
+            {boardFormVisibility
+              ? "Hide New Board Form"
+              : "Show New Board Form"}
+          </button>
         </div>
         {selectedBoard ? (
           <>
