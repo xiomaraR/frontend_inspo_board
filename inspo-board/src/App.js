@@ -81,6 +81,18 @@ function App() {
       .catch((error) => console.log(error.response.data));
   };
 
+  const likeCard = (cardId) => {
+    axios.patch(`${appURL}/cards/${cardId}`).then((result) => {
+      const cardsCopy = [...cards];
+      for (const card of cardsCopy) {
+        if (card.card_id === cardId) {
+          card.likes_count = result.data.likes_count;
+        }
+      }
+      setCards(cardsCopy);
+    });
+  };
+
   return (
     <div>
       <header>
@@ -107,7 +119,11 @@ function App() {
           <>
             <div>
               <h2>Cards for {selectedBoard.title}</h2>
-              <CardList cards={cards} onDeleteCard={deleteCard} />
+              <CardList
+                cards={cards}
+                onDeleteCard={deleteCard}
+                onLikeCard={likeCard}
+              />
             </div>
             <div>
               <h2>Create a new card:</h2>
