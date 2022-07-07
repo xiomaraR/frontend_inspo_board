@@ -71,6 +71,16 @@ function App() {
       .catch((error) => console.log(error.response.data));
   };
 
+  const deleteCard = (cardId) => {
+    axios
+      .delete(`${appURL}/cards/${cardId}`)
+      .then(() => {
+        const newCards = cards.filter((card) => card.card_id !== cardId);
+        setCards(newCards);
+      })
+      .catch((error) => console.log(error.response.data));
+  };
+
   return (
     <div>
       <header>
@@ -97,7 +107,7 @@ function App() {
           <>
             <div>
               <h2>Cards for {selectedBoard.title}</h2>
-              <CardList cards={cards} />
+              <CardList cards={cards} onDeleteCard={deleteCard} />
             </div>
             <div>
               <h2>Create a new card:</h2>
