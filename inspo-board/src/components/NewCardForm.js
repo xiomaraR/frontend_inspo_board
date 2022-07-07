@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
-const NewCardForm = () => {
+const NewCardForm = ({ onAddCardCallback }) => {
+  const [formFields, setFormFields] = useState({
+    message: "",
+  });
+
+  const onMessageChange = (event) => {
+    setFormFields({ message: event.target.value });
+  };
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+
+    onAddCardCallback(formFields.message);
+
+    setFormFields({ message: "" });
+  };
+
   return (
-    <form>
-      <button type="button"></button>
+    <form onSubmit={onFormSubmit}>
+      <label htmlFor="cardMessage">Message:</label>
+      <input
+        name="cardMessage"
+        value={formFields.message}
+        onChange={onMessageChange}
+        maxLength="40"
+        required
+      />
+      <button type="submit">Submit</button>
     </form>
   );
 };

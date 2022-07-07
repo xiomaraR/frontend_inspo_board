@@ -29,7 +29,7 @@ function App() {
   };
 
   const selectBoard = (boardId, title, owner) => {
-    const board = { title: title, owner: owner };
+    const board = { boardId: boardId, title: title, owner: owner };
     setSelectedBoard(board);
 
     axios
@@ -52,6 +52,21 @@ function App() {
           owner: result.data.board.owner,
         };
         setBoards([...boards, newBoard]);
+      })
+      .catch((error) => console.log(error.response.data));
+  };
+
+  const addCard = (message) => {
+    axios
+      .post(`${appURL}/boards/${selectedBoard.boardId}/cards`, { message })
+      .then((result) => {
+        const newCard = {
+          card_id: result.data.card.card_id,
+          message: result.data.card.message,
+          likes_count: result.data.card.likes_count,
+          board_id: result.data.card.board_id,
+        };
+        setCards([...cards, newCard]);
       })
       .catch((error) => console.log(error.response.data));
   };
@@ -86,7 +101,7 @@ function App() {
             </div>
             <div>
               <h2>Create a new card:</h2>
-              <NewCardForm />
+              <NewCardForm onAddCardCallback={addCard} />
             </div>
           </>
         ) : (
