@@ -43,6 +43,45 @@ function App() {
       });
   };
 
+  const getCardsSortedByLikes = () => {
+    axios
+      .get(`${appURL}/boards/${selectedBoard.boardId}/cards`, {
+        params: { sort: "likes" },
+      })
+      .then((response) => {
+        setCards(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  };
+
+  const getCardsSortedByID = () => {
+    axios
+      .get(`${appURL}/boards/${selectedBoard.boardId}/cards`, {
+        params: { sort: "id" },
+      })
+      .then((response) => {
+        setCards(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  };
+
+  const getCardsSortedAlphabet = () => {
+    axios
+      .get(`${appURL}/boards/${selectedBoard.boardId}/cards`, {
+        params: { sort: "letter" },
+      })
+      .then((response) => {
+        setCards(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  };
+
   const addBoard = (title, owner) => {
     axios
       .post(`${appURL}/boards`, { title, owner })
@@ -139,6 +178,15 @@ function App() {
                 onDeleteCard={deleteCard}
                 onLikeCard={likeCard}
               />
+              <button type="button" onClick={getCardsSortedByID}>
+                Sort by card ID
+              </button>
+              <button type="button" onClick={getCardsSortedAlphabet}>
+                Sort alphabetically
+              </button>
+              <button type="button" onClick={getCardsSortedByLikes}>
+                Sort by number of likes
+              </button>
             </div>
             <div>
               <h2>Create a new card:</h2>
