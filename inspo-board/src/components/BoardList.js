@@ -23,7 +23,6 @@ const BoardList = ({ boards, onSelectBoard }) => {
 BoardList.propTypes = {
   Boards: PropTypes.arrayOf(
     PropTypes.shape({
-      boardId: PropTypes.number.isRequired,
       board_id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       owner: PropTypes.string.isRequired,
