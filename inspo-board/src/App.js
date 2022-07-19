@@ -6,8 +6,6 @@ import NewBoardForm from "./components/NewBoardForm";
 import CardList from "./components/CardList";
 import NewCardForm from "./components/NewCardForm";
 
-const appURL = "https://bored-inspo-backend.herokuapp.com/";
-
 function App() {
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState("");
@@ -19,8 +17,8 @@ function App() {
   }, []);
 
   const getBoards = () => {
-    return axios
-      .get(`${appURL}/boards`)
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
       .then((response) => {
         setBoards(response.data);
       })
@@ -34,7 +32,7 @@ function App() {
     setSelectedBoard(board);
 
     axios
-      .get(`${appURL}/boards/${boardId}/cards`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${boardId}/cards`)
       .then((response) => {
         setCards(response.data);
       })
@@ -45,9 +43,12 @@ function App() {
 
   const getCardsSortedByLikes = () => {
     axios
-      .get(`${appURL}/boards/${selectedBoard.boardId}/cards`, {
-        params: { sort: "likes" },
-      })
+      .get(
+        `${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.boardId}/cards`,
+        {
+          params: { sort: "likes" },
+        }
+      )
       .then((response) => {
         setCards(response.data);
       })
@@ -58,9 +59,12 @@ function App() {
 
   const getCardsSortedByID = () => {
     axios
-      .get(`${appURL}/boards/${selectedBoard.boardId}/cards`, {
-        params: { sort: "id" },
-      })
+      .get(
+        `${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.boardId}/cards`,
+        {
+          params: { sort: "id" },
+        }
+      )
       .then((response) => {
         setCards(response.data);
       })
@@ -71,9 +75,12 @@ function App() {
 
   const getCardsSortedAlphabet = () => {
     axios
-      .get(`${appURL}/boards/${selectedBoard.boardId}/cards`, {
-        params: { sort: "letter" },
-      })
+      .get(
+        `${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.boardId}/cards`,
+        {
+          params: { sort: "letter" },
+        }
+      )
       .then((response) => {
         setCards(response.data);
       })
@@ -84,7 +91,7 @@ function App() {
 
   const addBoard = (title, owner) => {
     axios
-      .post(`${appURL}/boards`, { title, owner })
+      .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, { title, owner })
       .then((result) => {
         const newBoard = {
           board_id: result.data.board.board_id,
@@ -98,7 +105,10 @@ function App() {
 
   const addCard = (message) => {
     axios
-      .post(`${appURL}/boards/${selectedBoard.boardId}/cards`, { message })
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.boardId}/cards`,
+        { message }
+      )
       .then((result) => {
         const newCard = {
           card_id: result.data.card.card_id,
@@ -113,7 +123,7 @@ function App() {
 
   const deleteCard = (cardId) => {
     axios
-      .delete(`${appURL}/cards/${cardId}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}`)
       .then(() => {
         const newCards = cards.filter((card) => card.card_id !== cardId);
         setCards(newCards);
@@ -122,15 +132,17 @@ function App() {
   };
 
   const likeCard = (cardId) => {
-    axios.patch(`${appURL}/cards/${cardId}`).then((result) => {
-      const cardsCopy = [...cards];
-      for (const card of cardsCopy) {
-        if (card.card_id === cardId) {
-          card.likes_count = result.data.likes_count;
+    axios
+      .patch(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}`)
+      .then((result) => {
+        const cardsCopy = [...cards];
+        for (const card of cardsCopy) {
+          if (card.card_id === cardId) {
+            card.likes_count = result.data.likes_count;
+          }
         }
-      }
-      setCards(cardsCopy);
-    });
+        setCards(cardsCopy);
+      });
   };
 
   return (
