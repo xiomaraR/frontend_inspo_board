@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const NewCardForm = ({ onAddCardCallback }) => {
   const [formFields, setFormFields] = useState({
@@ -32,4 +33,7 @@ const NewCardForm = ({ onAddCardCallback }) => {
   );
 };
 
+NewCardForm.propTypes = {
+  onAddCardCallback: PropTypes.func.isRequired,
+};
 export default NewCardForm;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Card = ({ cardId, message, likesCount, onDelete, onLike }) => {
   const onDeleteClick = () => {
@@ -21,6 +22,14 @@ const Card = ({ cardId, message, likesCount, onDelete, onLike }) => {
       </button>
     </div>
   );
+};
+
+Card.propTypes = {
+  cardId: PropTypes.number.isRequired,
+  message: PropTypes.string.isRequired,
+  likesCount: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onLike: PropTypes.func.isRequired,
 };
 
 export default Card;
