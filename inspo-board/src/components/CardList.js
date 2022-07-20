@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const CardList = ({ cards, onDeleteCard, onLikeCard }) => {
   return (
-    <div>
+    <div className="cards-box">
       {cards.map((card) => {
         return (
           <Card

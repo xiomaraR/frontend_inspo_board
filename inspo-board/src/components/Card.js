@@ -1,4 +1,5 @@
 import React from "react";
+import heart from "../images/heart.png";
 
 const Card = ({ cardId, message, likesCount, onDelete, onLike }) => {
   const onDeleteClick = () => {
@@ -12,12 +13,21 @@ const Card = ({ cardId, message, likesCount, onDelete, onLike }) => {
   return (
     <div className="card-display">
       <h3>{message}</h3>
-      <p>{likesCount}</p>
-      <button type="button" onClick={onLikeClick}>
-        +1
-      </button>
-      <button type="button" onClick={onDeleteClick}>
-        Delete
+      <div className="pos-ll">
+        {likesCount}
+        <button
+          img
+          src
+          className="like-btn"
+          type="button"
+          onClick={onLikeClick}
+        >
+          {" "}
+          <img src={heart} alt="heart like icon" />
+        </button>
+      </div>
+      <button className="btn-ur" type="button" onClick={onDeleteClick}>
+        X
       </button>
     </div>
   );

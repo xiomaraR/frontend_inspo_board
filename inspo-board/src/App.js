@@ -134,15 +134,14 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="App">
       <header>
         <h1>Inspo Board</h1>
       </header>
       <main>
-        <div>
-          <h2>Board List</h2>
-          <BoardList boards={boards} onSelectBoard={selectBoard} />
-        </div>
+        <h2>Board List</h2>
+        <BoardList boards={boards} onSelectBoard={selectBoard} />
+
         <div>
           <h2>Selected Board:</h2>
           <h3>
@@ -172,7 +171,7 @@ function App() {
         {selectedBoard ? (
           <>
             <div>
-              <h2>Cards for {selectedBoard.title}</h2>
+              <h2 className="board-cards">Cards for {selectedBoard.title}</h2>
               <CardList
                 cards={cards}
                 onDeleteCard={deleteCard}
