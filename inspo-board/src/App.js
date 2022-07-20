@@ -23,7 +23,7 @@ function App() {
         setBoards(response.data);
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log(error);
       });
   };
 
@@ -162,7 +162,7 @@ function App() {
               : "Select a board from the list!"}
           </h3>
         </div>
-        <div>
+        <div className="new-board">
           <h2>Create a new board:</h2>
           {boardFormVisibility ? (
             <NewBoardForm onAddBoardCallback={addBoard} />
@@ -170,6 +170,7 @@ function App() {
             ""
           )}
           <button
+            className="hide-btn"
             type="button"
             onClick={() => {
               setBoardFormVisibility(!boardFormVisibility);
@@ -183,12 +184,14 @@ function App() {
         {selectedBoard ? (
           <>
             <div>
-              <h2 className="board-cards">Cards for {selectedBoard.title}</h2>
+              {/* <h2 className="board-cards">{selectedBoard.title} Board</h2> */}
               <CardList
                 cards={cards}
                 onDeleteCard={deleteCard}
                 onLikeCard={likeCard}
               />
+            </div>
+            <section className="sorting-btns">
               <button type="button" onClick={getCardsSortedByID}>
                 Sort by card ID
               </button>
@@ -196,10 +199,10 @@ function App() {
                 Sort alphabetically
               </button>
               <button type="button" onClick={getCardsSortedByLikes}>
-                Sort by number of likes
+                Sort by likes
               </button>
-            </div>
-            <div>
+            </section>
+            <div className="new-card">
               <h2>Create a new card:</h2>
               <NewCardForm onAddCardCallback={addCard} />
             </div>
