@@ -1,0 +1,16 @@
+.form-box-card {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.form-box-card input {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 50px;
+  width: 300px;
+  height: 2em;
+}

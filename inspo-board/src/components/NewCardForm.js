@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import "./NewCardForm.css";
 
 const NewCardForm = ({ onAddCardCallback }) => {
   const [formFields, setFormFields] = useState({
@@ -19,7 +20,7 @@ const NewCardForm = ({ onAddCardCallback }) => {
   };
 
   return (
-    <form onSubmit={onFormSubmit}>
+    <form className="form-box-card" onSubmit={onFormSubmit}>
       <label htmlFor="cardMessage">Message:</label>
       <input
         name="cardMessage"
@@ -28,7 +29,9 @@ const NewCardForm = ({ onAddCardCallback }) => {
         maxLength="40"
         required
       />
-      <button type="submit">Submit</button>
+      <button className="submit" type="submit">
+        Submit
+      </button>
     </form>
   );
 };
