@@ -38,7 +38,7 @@ main h2 {
 
 .cards-box {
   height: 100vh;
-  max-width: 55em;
+  max-width: calc(100vw - 400px);
   display: flex;
   flex-direction: row;
   align-items: stretch;
