@@ -11,8 +11,32 @@ const Card = ({ cardId, message, likesCount, onDelete, onLike }) => {
     onLike(cardId);
   };
 
+  const colors = [
+    "darkseagreen",
+    "palegoldenrod",
+    "antiquewhite",
+    "lightblue",
+    "burlywood",
+    "pink",
+    "steelblue",
+    "darksalmon",
+    "khaki",
+    "plum",
+    "silver",
+    "palevioletred",
+    "lightseagreen ",
+    "lemonchiffon",
+  ];
+  const getColor = () => {
+    const len = colors.length;
+    const randomNum = Math.floor(Math.random() * len);
+    let color = colors[randomNum];
+    console.log(color);
+    return color;
+  };
+
   return (
-    <div className="card-display">
+    <div className="card-display" style={{ backgroundColor: getColor() }}>
       <h3>{message}</h3>
       <div className="pos-ll">
         {likesCount}
