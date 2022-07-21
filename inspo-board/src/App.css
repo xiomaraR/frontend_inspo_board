@@ -13,7 +13,6 @@ body {
   background-color: #282c34;
   color: aliceblue;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 header {
@@ -39,23 +38,23 @@ main h2 {
 
 .cards-box {
   height: 100vh;
-  width: 65em;
+  max-width: 55em;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  position: relative;
-  left: 25em;
-  bottom: 18em;
+  position: absolute;
+  right: 2em;
+  top: 10em;
   overflow-x: hidden;
   margin: -10px;
-  flex: 1 1 auto;
+  flex: 50%;
 }
 
 .new-card {
   position: absolute;
-  top: 0;
+  top: 2em;
   right: 2%;
 }
 
@@ -183,7 +182,7 @@ main h2 {
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
-  width: 100px;
+  width: 100%;
   margin-right: 1em;
   margin-bottom: 1em;
 }
@@ -224,6 +223,7 @@ main h2 {
   touch-action: manipulation;
   white-space: nowrap;
   word-break: break-word;
+  width: 100%;
 }
 
 .add-btn:active,
