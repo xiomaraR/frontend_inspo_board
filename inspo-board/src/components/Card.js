@@ -39,7 +39,7 @@ const Card = ({ cardId, message, likesCount, onDelete, onLike }) => {
     <div className="card-display" style={{ backgroundColor: getColor() }}>
       <h3>{message}</h3>
       <div className="pos-ll">
-        {likesCount}
+        <p> {likesCount} </p>
         <button
           img
           src

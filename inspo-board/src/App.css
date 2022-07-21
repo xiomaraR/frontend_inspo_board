@@ -47,11 +47,11 @@ main li {
 
 .cards-box {
   height: 100vh;
-  max-width: calc(100vw - 400px);
+  max-width: calc(100vw - 450px);
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
   position: absolute;
   right: 2em;
@@ -86,10 +86,12 @@ main li {
   /* aspect-ratio: 1/1; */
 
   background: pink;
-  padding-top: 0.75em;
+  padding: 5em 3em 2em;
   margin-bottom: 2em;
   color: #282c34;
   text-align: center;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .btn-ur {
@@ -171,9 +173,9 @@ main li {
 
 .sorting-btns {
   position: absolute;
-  bottom: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-top: 4em;
 }
 .sorting-btns button {
   background-color: aliceblue;
