@@ -1,3 +1,18 @@
-input:invalid {
-    border: 2px solid red;
+.form-box input:invalid {
+  border: 1px solid red;
+}
+
+.form-box input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.form-box label {
+  margin-top: 1em;
+}
+
+.form-box button {
+  margin-bottom: 1em;
 }

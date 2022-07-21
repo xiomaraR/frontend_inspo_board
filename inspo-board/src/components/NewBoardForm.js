@@ -28,7 +28,7 @@ const NewBoardForm = ({ onAddBoardCallback }) => {
   };
 
   return (
-    <form onSubmit={onFormSubmit}>
+    <form className="form-box" onSubmit={onFormSubmit}>
       <label htmlFor="boardTitle">Title:</label>
       <input
         name="boardTitle"

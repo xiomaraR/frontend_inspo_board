@@ -16,10 +16,6 @@ body {
   overflow-y: hidden;
 }
 
-.App {
-  /* text-align: center; */
-}
-
 header {
   font-size: 1.5rem;
 }
@@ -28,6 +24,10 @@ header h1 {
   font-weight: 400;
 }
 
+main h2 {
+  padding-top: 2em;
+  font-weight: 500;
+}
 .board-list {
   list-style: none;
 }
@@ -47,19 +47,20 @@ header h1 {
   flex-wrap: wrap;
   position: relative;
   left: 25em;
-  bottom: 10em;
+  bottom: 18em;
   overflow-x: hidden;
   margin: -10px;
+  flex: 1 1 auto;
 }
 
 .new-card {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 2%;
 }
 
 .cards-box > * {
-  flex: 1 1 0;
+  /* flex: 1 1 0; */
   margin: 10px;
   flex-basis: auto;
   max-height: 16em;
@@ -118,6 +119,45 @@ header h1 {
   height: 8.5em;
 }
 
+.new-board button {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid #266db6;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.new-board button:after {
+  content: "";
+  background-color: #d5edf6;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.new-board button:hover:after {
+  top: 0px;
+  left: 0px;
+  background-color: #6dcff6;
+}
+
+@media (min-width: 768px) {
+  #hide-btn {
+    padding: 13px 50px 13px;
+  }
+}
+
 .sorting-btns {
   position: absolute;
   bottom: 0;
@@ -156,4 +196,58 @@ header h1 {
   border-color: #008296;
   box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
   outline: 0;
+}
+
+.new-card button {
+  align-items: center;
+  background-color: #d5f5e3;
+  background-position: 0 0;
+  border: 1px solid #abebc6;
+  border-radius: 11px;
+  box-sizing: border-box;
+  color: #28b463;
+  cursor: pointer;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 33.4929px;
+  list-style: outside url(https://www.smashingmagazine.com/images/bullet.svg)
+    none;
+  padding: 2px 12px;
+  text-align: left;
+  text-decoration: none;
+  text-shadow: none;
+  text-underline-offset: 1px;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  word-break: break-word;
+}
+
+.add-btn:active,
+.add-btn:hover,
+.add-btn:focus {
+  outline: 0;
+}
+
+.add-btn:active {
+  background-color: #28b463;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+  color: #ffffff;
+}
+
+.add-btn:hover {
+  background-color: #ffe3e3;
+  border-color: #faa4a4;
+  color: #0f1111;
+}
+
+.add-btn:active:hover,
+.add-btn:focus:hover,
+.add-btn:focus {
+  background-color: #28b463;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+  color: #ffffff;
 }

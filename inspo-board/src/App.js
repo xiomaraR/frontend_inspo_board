@@ -11,6 +11,7 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState("");
   const [cards, setCards] = useState([]);
   const [boardFormVisibility, setBoardFormVisibility] = useState(true);
+  const [addCardVisibility, setAddCardVisibility] = useState(true);
 
   useEffect(() => {
     getBoards();
@@ -151,18 +152,18 @@ function App() {
         <h1>Inspo Board</h1>
       </header>
       <main>
-        <h2>Board List</h2>
+        <h2>Boards</h2>
         <BoardList boards={boards} onSelectBoard={selectBoard} />
 
         <div>
           <h2>Selected Board:</h2>
-          <h3>
+          <h4>
             {selectedBoard
               ? `${selectedBoard.title} - ${selectedBoard.owner}`
               : "Select a board from the list!"}
-          </h3>
+          </h4>
         </div>
-        <div className="new-board">
+        <section className="new-board">
           <h2>Create a new board:</h2>
           {boardFormVisibility ? (
             <NewBoardForm onAddBoardCallback={addBoard} />
@@ -170,7 +171,7 @@ function App() {
             ""
           )}
           <button
-            className="hide-btn"
+            id="hide-btn"
             type="button"
             onClick={() => {
               setBoardFormVisibility(!boardFormVisibility);
@@ -180,7 +181,7 @@ function App() {
               ? "Hide New Board Form"
               : "Show New Board Form"}
           </button>
-        </div>
+        </section>
         {selectedBoard ? (
           <>
             <div>
@@ -202,10 +203,24 @@ function App() {
                 Sort by likes
               </button>
             </section>
-            <div className="new-card">
-              <h2>Create a new card:</h2>
-              <NewCardForm onAddCardCallback={addCard} />
-            </div>
+            <section className="new-card">
+              {/* <h2>add card:</h2> */}
+
+              {addCardVisibility ? (
+                <NewCardForm onAddCardCallback={addCard} />
+              ) : (
+                ""
+              )}
+              <button
+                className="add-btn"
+                type="button"
+                onClick={() => {
+                  setAddCardVisibility(!addCardVisibility);
+                }}
+              >
+                {addCardVisibility ? "Hide" : "write something"}
+              </button>
+            </section>
           </>
         ) : (
           ""
